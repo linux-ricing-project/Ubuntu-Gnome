@@ -1,3 +1,5 @@
+# GNOME Look
+
 <p align="center">
   <a href="https://github.com/linux-ricing-project/ubuntu_install">
     <img src="images/ubuntu_install_logo_128px.png" alt="ubuntu_install">
@@ -19,7 +21,7 @@
 
 Script to customize GNOME with my visual preferences (themes + icon themes + extensions and so on)
 
-# GNOME Look - Description
+# Description
 
 This script is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs). It works the following way:
 
