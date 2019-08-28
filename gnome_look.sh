@@ -182,7 +182,7 @@ gnome_site="https://extensions.gnome.org"
 
       # save default screensaver
       local screensaver_value=$(gsettings get org.gnome.desktop.screensaver picture-uri)
-      echo "gsettings get org.gnome.desktop.screensaver picture-uri $screensaver_value" >> "$reset_settings_file"
+      echo "gsettings set org.gnome.desktop.screensaver picture-uri $screensaver_value" >> "$reset_settings_file"
 
       # save default cursor
       local cursor_theme_value=$(gsettings get org.gnome.desktop.interface cursor-theme)
@@ -243,8 +243,10 @@ gnome_site="https://extensions.gnome.org"
 
     # exibindo todos os pacotes que são carregados no boot.
     # (através dessa linha, dá pra gerenciar melhor usando o 'Startup Applications')
-    echo "showing all the startup applicaitons..."
-    sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
+    if grep -q -r "NoDisplay=true" /etc/xdg/autostart/*.desktop; then
+      echo "showing all the startup applicaitons..."
+      sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
+    fi
 
     # desinstalando o gnome-software (a loja de aplicativo do Ubuntu).
     # é..eu não uso ele pra nada mesmo, resolvi desinstalar por padrão
