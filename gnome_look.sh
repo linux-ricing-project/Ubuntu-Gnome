@@ -378,30 +378,35 @@ gnome_site="https://extensions.gnome.org"
     # rm -rf .temp_dir
 
     _print_info "Applying gnome settings"
-    # Set Dash position do BOTTOM
+
+    echo "Set Dash position do BOTTOM"
     gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-    # Change Dash icon size to 20
+
+    echo "Change Dash icon size to 20"
     gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 20
-    # Change 'show apps' button to the left
+
+    echo "Change 'show apps' button to the left"
     gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
-    # Set favorite-app in Dash
+
+    echo "Set favorite-app in Dash"
     gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'terminator.desktop', 'spotify.desktop']"
 
-    # Set Wallpaper
+    echo "Set Wallpaper"
     local wallpaper_file="caruaru_look_wallpaper.jpg"
     cp "wallpaper/${wallpaper_file}" "$HOME/Pictures"
     gsettings set org.gnome.desktop.background picture-uri file:///home/${USER}/Pictures/${wallpaper_file}
 
-    # Build lock screen wallpaper
+    echo "Build lock screen wallpaper"
     convert /home/${USER}/Pictures/${wallpaper_file} -blur 0x8 /home/${USER}/Pictures/wallpaper_lockscreen.jpg
     gsettings set org.gnome.desktop.screensaver picture-uri file:///home/${USER}/Pictures/wallpaper_lockscreen.jpg
 
     # set icons to Korla
     # gsettings set org.gnome.desktop.interface icon-theme "korla"
 
-    # install Adapta Theme
+    echo "set Adapta Theme"
     gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
     
+    echo "restart Gnome"
     gnome-shell --replace &>/dev/null & disown
     _print_info "OK"
   }
