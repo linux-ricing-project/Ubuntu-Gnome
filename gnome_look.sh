@@ -239,7 +239,7 @@ gnome_site="https://extensions.gnome.org"
   # onde todos os looks utilizarão.
   # ============================================
   base(){
-    _print_info "Applying base config"
+    figlet "Applying base config"
 
     # desabilita todas as extensões
     gsettings set org.gnome.shell enabled-extensions "[]"
@@ -296,23 +296,27 @@ gnome_site="https://extensions.gnome.org"
     # linka os schemas
     _move_schema_files
 
-    # muda a configurações de power
+    echo "applying power config preferences"
     gsettings set org.gnome.settings-daemon.plugins.power lid-close-battery-action "nothing"
     gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action "nothing"
 
-    # configura a extensão de "openweather"
+    echo "config OpenWeather Extension"
     gsettings set org.gnome.shell.extensions.openweather unit "celsius"
     gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
 
-    # Disable Trash icon on Desktop
+    echo "Disable Trash icon on Desktop"
     gsettings set org.gnome.nautilus.desktop trash-icon-visible false
-    # Disable Network Servers icon on Desktop
+
+    echo "Disable Network Servers icon on Desktop"
     gsettings set org.gnome.nautilus.desktop network-icon-visible false
-    # Disable Home folder icon on Desktop
+
+    echo "Disable Home folder icon on Desktop"
     gsettings set org.gnome.nautilus.desktop home-icon-visible false
-    # Disable Mounted Volumes icon on Desktop
+
+    echo "Disable Mounted Volumes icon on Desktop"
     gsettings set org.gnome.nautilus.desktop volumes-visible false
-    # Change control buttons to the left position
+
+    echo "Change control buttons to the left position"
     gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
   }
 
