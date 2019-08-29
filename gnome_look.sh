@@ -239,6 +239,7 @@ gnome_site="https://extensions.gnome.org"
   # onde todos os looks utilizarão.
   # ============================================
   base(){
+    clear
     figlet "Base Theme"
 
     # desabilita todas as extensões
