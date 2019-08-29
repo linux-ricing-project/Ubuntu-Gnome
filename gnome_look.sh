@@ -384,7 +384,7 @@ gnome_site="https://extensions.gnome.org"
     # Instala o pacote de fodlers do 'Korla'
     # o modo de instalação está no github deles.
     echo "install Korla icon folder"
-    git clone git@github.com:bikass/korla-folders.git
+    git clone https://github.com/bikass/korla-folders.git
     cd korla-folders
     unzip -x places_1.zip
     mv "places_1" "scalable"
