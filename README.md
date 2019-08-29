@@ -34,14 +34,11 @@ There are currently 2 themes:
 
 - **Caruaru Theme**: the first customization
 
-### Install Folders:
-
-Extensions: `$HOME/.local/share/gnome-shell/extensions`
-
-Icons: `$HOME/.local/share/icons/`
+**Install Folders:**  
+Extensions: ```$HOME/.local/share/gnome-shell/extensions```  
+Icons: ```$HOME/.local/share/icons/```
 
 ## Reset Theme
----
 
 ### To use:
 ```bash
@@ -61,7 +58,6 @@ Icons: `$HOME/.local/share/icons/`
 This image show the default **Ubuntu 18.04** with my default initial config (after running [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install)).
 
 ## Caruaru Theme
----
 
 ### To use:
 ```bash
