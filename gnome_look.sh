@@ -220,11 +220,6 @@ gnome_site="https://extensions.gnome.org"
     icons_path="$HOME/.local/share/icons/"
     test -d "$icons_path" || mkdir -p "$icons_path"
 
-    #  move todos os arquivos de schema para os diretórios locais e compila
-    # isso é ncessaŕio principalmente para o "Openweather" ser configurado através do gsettings
-    local_schema_path="$HOME/.local/share/glib-2.0/schemas/"
-    test -d "$local_schema_path" || mkdir -p "$local_schema_path"
-
     # criando o diretório de configuração do script.
     gnome_look_config_folder="$HOME/.config/gnome_look"
     reset_settings_file="$gnome_look_config_folder/gsettings_reset_backup.txt"
@@ -232,6 +227,11 @@ gnome_site="https://extensions.gnome.org"
       mkdir -p "$gnome_look_config_folder" 
       _save_reset_settings
       }
+
+    #  move todos os arquivos de schema para os diretórios locais e compila
+    # isso é ncessaŕio principalmente para o "Openweather" ser configurado através do gsettings
+    local_schema_path="$HOME/.local/share/glib-2.0/schemas/"
+    test -d "$local_schema_path" || mkdir -p "$local_schema_path"
   }
 
   # ============================================
@@ -271,14 +271,16 @@ gnome_site="https://extensions.gnome.org"
     # 1. levar o relógio pro lado direito, e esconder o botão "activities"
     # ------------------------------------------------------------------
     local unite_extension_name="unite-shell-v31"
-    if [ ! -d "${extensions_path}/${unite_extension_name}" ];then
+    local unit_uuid="unite@hardpixel.eu"
+    if [ ! -d "${extensions_path}/${unit_uuid}" ];then
       cd "$extensions_path"
       wget "https://github.com/hardpixel/unite-shell/releases/download/v31/${unite_extension_name}.zip"
       unzip -x "${unite_extension_name}.zip"
       rm -rf "${unite_extension_name}.zip"
-      gnome-shell-extension-tool --enable-extension "unite@hardpixel.eu"
       cd -
     fi
+
+    gnome-shell-extension-tool --enable-extension "$unit_uuid"
     # ------------------------------------------------------------------
 
     extensions=(
