@@ -368,6 +368,9 @@ gnome_site="https://extensions.gnome.org"
     # se existir a pasta de icones, delete
     [[ -e "$icons_path" ]] && rm -rf "$icons_path"
 
+    # se existir a pasta de extensions, delete o conteúdo dela
+    [[ -e "$extensions_path" ]] && rm -rf "${extensions_path}/*"
+
     _print_info "OK"
   }
 
