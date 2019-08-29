@@ -239,7 +239,7 @@ gnome_site="https://extensions.gnome.org"
   # onde todos os looks utilizarão.
   # ============================================
   base(){
-    figlet "Applying base config"
+    figlet "Base Theme"
 
     # desabilita todas as extensões
     gsettings set org.gnome.shell enabled-extensions "[]"
