@@ -373,11 +373,27 @@ gnome_site="https://extensions.gnome.org"
       sudo apt-get install -y adapta-gtk-theme
     fi
 
-    # install Korla icon theme
-    # [[ -e .temp_dir ]] || mkdir .temp_dir && rm -rf .temp_dir
-    # git clone https://github.com/bikass/korla.git .temp_dir
-    # cd .temp_dir && mv korla korla-light "$icons_path" && cd -
-    # rm -rf .temp_dir
+    # Instala o pacote de ícones 'Korla'
+    # ------------------------------------------------------------------
+    echo "install Korla icon theme"
+    local current_folder=$(pwd)
+    [[ -e .temp_dir ]] || mkdir .temp_dir && rm -rf .temp_dir
+    git clone https://github.com/bikass/korla.git .temp_dir
+    cd .temp_dir && mv korla korla-light "$icons_path"
+
+    # Instala o pacote de fodlers do 'Korla'
+    # o modo de instalação está no github deles.
+    echo "install Korla icon folder"
+    git clone git@github.com:bikass/korla-folders.git
+    cd korla-folders
+    unzip -x places_1.zip
+    mv "places_1" "scalable"
+    rm -rf "${icons_path}/korla/places/scalable"
+    mv "scalable" "${icons_path}/korla/places"
+
+    cd "$current_folder"
+    rm -rf .temp_dir
+    # ------------------------------------------------------------------
 
     _print_info "Applying gnome settings"
 
@@ -402,8 +418,8 @@ gnome_site="https://extensions.gnome.org"
     convert /home/${USER}/Pictures/${wallpaper_file} -blur 0x8 /home/${USER}/Pictures/wallpaper_lockscreen.jpg
     gsettings set org.gnome.desktop.screensaver picture-uri file:///home/${USER}/Pictures/wallpaper_lockscreen.jpg
 
-    # set icons to Korla
-    # gsettings set org.gnome.desktop.interface icon-theme "korla"
+    echo "set icons to Korla"
+    gsettings set org.gnome.desktop.interface icon-theme "korla"
 
     echo "set Adapta Theme"
     gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
