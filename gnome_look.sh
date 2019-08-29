@@ -264,10 +264,20 @@ gnome_site="https://extensions.gnome.org"
       echo -e '[Desktop Entry]\nHidden=true' > ~/.config/autostart/gnome-welcome-tour.desktop
     )
 
+    # instalando a extensão "Unite". Dentre as coisas que ela faz é
+    # 1. levar o relógio pro lado direito, e esconder o botão "activities"
+    cd "$extensions_path"
+    wget https://github.com/hardpixel/unite-shell/releases/download/v31/unite-shell-v31.zip
+    unzip -x unite-shell-v31.zip
+    rm -rf unite-shell-v31.zip
+    mv "unite-shell-v31/unite@hardpixel.eu" .
+    rm -rf "unite-shell-v31"
+    cd -
+
+
     extensions=(
-    ${gnome_site}/extension-data/hide-activities-button%40gnome-shell-extensions.bookmarkd.xyz.v1.shell-extension.zip \
-    ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
-    # ${gnome_site}/extension-data/Move_Clockrmy.pobox.com.v19.shell-extension.zip
+      # instala a extensão de exibição do status de tempo/clima
+      ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
     )
 
     # desabilita todas as extensões
