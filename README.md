@@ -23,8 +23,7 @@ Script to customize GNOME with my visual preferences (themes + icon themes + ext
 
 # Description
 
-This script is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs). It works the following way:
-
+This script is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs). It works the following way:  
 Each customization have a name in reference a Pernambuco cities names, like 'Caruaru', 'Recife', 'Olinda' and so on.
 
 **It is don't have any visual similar with this cities, is just to name them.**
