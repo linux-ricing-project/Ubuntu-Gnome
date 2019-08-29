@@ -448,10 +448,10 @@ gnome_site="https://extensions.gnome.org"
   main(){
 
     init
-    base
 
     case "$gnome_look" in
       --caruaru)
+        base
         caruaru_look
       ;;
       --olinda)
