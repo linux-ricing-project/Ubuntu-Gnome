@@ -83,7 +83,7 @@ Extensions:
 **Theme Configs:**
 
   Configs:
-  - set Dash position do BOTTOM
+  - set Dash position to BOTTOM
   - change Dash icon size to 20
   - change 'show apps' button to the left
   - set my favorite-apps in Dash
