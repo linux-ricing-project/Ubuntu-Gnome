@@ -270,7 +270,7 @@ gnome_site="https://extensions.gnome.org"
     wget https://github.com/hardpixel/unite-shell/releases/download/v31/unite-shell-v31.zip
     unzip -x unite-shell-v31.zip
     rm -rf unite-shell-v31.zip
-    mv "unite-shell-v31/unite@hardpixel.eu" .
+    mv unite-shell-v31/* .
     rm -rf "unite-shell-v31"
     cd -
 
