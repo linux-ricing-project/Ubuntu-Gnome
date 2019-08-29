@@ -266,32 +266,18 @@ gnome_site="https://extensions.gnome.org"
 
     # instalando a extensão "Unite". Dentre as coisas que ela faz é
     # 1. levar o relógio pro lado direito, e esconder o botão "activities"
+    # ------------------------------------------------------------------
     local unite_extension_name="unite-shell-v31"
     local unite_uuid="unite@hardpixel.eu"
-    local current_folder=$(pwd)
     if [ ! -d "${extensions_path}/${unite_extension_name}" ];then
       cd "$extensions_path"
       wget "https://github.com/hardpixel/unite-shell/releases/download/v31/${unite_extension_name}.zip"
       unzip -x "${unite_extension_name}.zip"
       rm -rf "${unite_extension_name}.zip"
-
-      set +x
-      echo "[debug] entrando no diretorio"
-      cd "$unite_extension_name"
-      echo "[debug] movendo"
-      mv "$unite_uuid" ../
-      echo "[debug] voltando"
-      cd ..
-
-      echo "[debug] deletando o diretorio"
-      rm -rf "$unite_extension_name"
-
-      echo "[debug] aplciando a extensão"
       gnome-shell-extension-tool --enable-extension "$unite_uuid"
-      cd "$current_folder"
-      set -x
+      cd -
     fi
-
+    # ------------------------------------------------------------------
 
     extensions=(
       # instala a extensão de exibição do status de tempo/clima
