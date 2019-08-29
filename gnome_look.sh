@@ -241,6 +241,9 @@ gnome_site="https://extensions.gnome.org"
   base(){
     _print_info "Applying base config"
 
+    # desabilita todas as extensões
+    gsettings set org.gnome.shell enabled-extensions "[]"
+
     # exibindo todos os pacotes que são carregados no boot.
     # (através dessa linha, dá pra gerenciar melhor usando o 'Startup Applications')
     if grep -q -r "NoDisplay=true" /etc/xdg/autostart/*.desktop; then
@@ -282,9 +285,6 @@ gnome_site="https://extensions.gnome.org"
       # instala a extensão de exibição do status de tempo/clima
       ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
     )
-
-    # desabilita todas as extensões
-    gsettings set org.gnome.shell enabled-extensions "[]"
 
     #  instala todas as extensões
     for extension_url in "${extensions[@]}";do
