@@ -275,9 +275,12 @@ gnome_site="https://extensions.gnome.org"
       unzip -x "${unite_extension_name}.zip"
       rm -rf "${unite_extension_name}.zip"
 
-      echo "[debug] movendo o diretorio"
+      set +x
+      echo "[debug] entrando no diretorio"
       cd "$unite_extension_name"
+      echo "[debug] movendo"
       mv "$unite_uuid" ../
+      echo "[debug] voltando"
       cd ..
 
       echo "[debug] deletando o diretorio"
@@ -286,6 +289,7 @@ gnome_site="https://extensions.gnome.org"
       echo "[debug] aplciando a extensão"
       gnome-shell-extension-tool --enable-extension "$unite_uuid"
       cd "$current_folder"
+      set -x
     fi
 
 
