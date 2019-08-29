@@ -399,6 +399,9 @@ gnome_site="https://extensions.gnome.org"
     # Instala o pacote de ícones 'Korla'
     # ------------------------------------------------------------------
     echo "install Korla icon theme"
+    [[ -e "${icons_path}/korla" ]] && rm -rf $_
+    [[ -e "${icons_path}/korla-light" ]] && rm -rf $_
+
     local current_folder=$(pwd)
     [[ -e .temp_dir ]] || mkdir .temp_dir && rm -rf .temp_dir
     git clone https://github.com/bikass/korla.git .temp_dir
