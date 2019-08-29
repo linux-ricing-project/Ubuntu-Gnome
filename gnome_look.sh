@@ -267,13 +267,21 @@ gnome_site="https://extensions.gnome.org"
     # instalando a extensão "Unite". Dentre as coisas que ela faz é
     # 1. levar o relógio pro lado direito, e esconder o botão "activities"
     local unite_extension_name="unite-shell-v31"
+    local unite_uuid="unite@hardpixel.eu"
     if [ ! -d "${extensions_path}/${unite_extension_name}" ];then
       cd "$extensions_path"
       wget "https://github.com/hardpixel/unite-shell/releases/download/v31/${unite_extension_name}.zip"
       unzip -x "${unite_extension_name}.zip"
       rm -rf "${unite_extension_name}.zip"
-      mv ${unite_extension_name}/* .
+
+      echo "[debug] movendo o diretorio"
+      mv "${unite_extension_name}/${unite_uuid}" .
+
+      echo "[debug] deletando o diretorio"
       rm -rf "$unite_extension_name"
+
+      echo "[debug] aplciando a extensão"
+      gnome-shell-extension-tool --enable-extension "$unite_uuid"
       cd -
     fi
 
