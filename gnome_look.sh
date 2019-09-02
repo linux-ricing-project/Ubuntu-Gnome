@@ -308,7 +308,6 @@ gnome_site="https://extensions.gnome.org"
     echo "config Unite Extension"
     gsettings set org.gnome.shell.extensions.unite desktop-name-text "Ubuntu"
 
-
     if [ "$ubuntu_version" != "19.04" ];then
       echo "Disable Trash icon on Desktop"
       gsettings set org.gnome.nautilus.desktop trash-icon-visible false
@@ -469,74 +468,6 @@ gnome_site="https://extensions.gnome.org"
   }
 
   # ============================================
-  # Função que aplica o look chamado "caruaru"
-  # voltado para o Ubuntu 19.04
-  # ============================================
-  caruaru_look_19_04(){
-    # banner
-    clear
-    figlet "Caruaru Theme"
-
-    # Instala o pacote de ícones 'Korla'
-    # ------------------------------------------------------------------
-    echo "install Korla icon theme"
-    [[ -e "${icons_path}/korla" ]] && rm -rf "${icons_path}/korla"
-    [[ -e "${icons_path}/korla-light" ]] && rm -rf "${icons_path}/korla-light"
-
-    local current_folder=$(pwd)
-    [[ -e .temp_dir ]] || mkdir .temp_dir && rm -rf .temp_dir
-    git clone https://github.com/bikass/korla.git .temp_dir
-    cd .temp_dir && mv korla korla-light "$icons_path"
-
-    # Instala o pacote de fodlers do 'Korla'
-    # o modo de instalação está no github deles.
-    echo "install Korla icon folder"
-    git clone https://github.com/bikass/korla-folders.git
-    cd korla-folders
-    unzip -x places_1.zip
-    mv "places_1" "scalable"
-    rm -rf "${icons_path}/korla/places/scalable"
-    mv "scalable" "${icons_path}/korla/places"
-
-    cd "$current_folder"
-    rm -rf .temp_dir
-    # ------------------------------------------------------------------
-
-    _print_info "Applying gnome settings"
-
-    echo "Set Dash position do BOTTOM"
-    gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-
-    echo "Change Dash icon size to 20"
-    gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 20
-
-    echo "Change 'show apps' button to the left"
-    gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
-
-    echo "Set favorite-app in Dash"
-    gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'terminator.desktop', 'spotify.desktop']"
-
-    echo "Set Wallpaper"
-    local wallpaper_file="caruaru_look_wallpaper.jpg"
-    cp "wallpaper/${wallpaper_file}" "$HOME/Pictures"
-    gsettings set org.gnome.desktop.background picture-uri file:///home/${USER}/Pictures/${wallpaper_file}
-
-    echo "Build lock screen wallpaper"
-    convert /home/${USER}/Pictures/${wallpaper_file} -blur 0x8 /home/${USER}/Pictures/wallpaper_lockscreen.jpg
-    gsettings set org.gnome.desktop.screensaver picture-uri file:///home/${USER}/Pictures/wallpaper_lockscreen.jpg
-
-    echo "set icons to Korla"
-    gsettings set org.gnome.desktop.interface icon-theme "korla"
-
-    echo "set Adapta Theme"
-    gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
-    
-    echo "restart Gnome"
-    gnome-shell --replace &>/dev/null & disown
-    _print_info "OK"
-  }
-
-  # ============================================
   # Função Main
   # ============================================
   main(){
@@ -547,11 +478,7 @@ gnome_site="https://extensions.gnome.org"
     case "$gnome_look" in
       --caruaru)
         base
-        # if [ "$ubuntu_version" != "19.04" ];then
           caruaru_look
-        # else
-        #   caruaru_look_19_04
-        # fi
       ;;
       --olinda)
         echo "olinda not implemented yet"

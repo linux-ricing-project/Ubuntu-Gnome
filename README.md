@@ -109,5 +109,4 @@ This image show the **Ubuntu 18.04** after run 'Caruaru Theme'.
 
 <img src="images/caruaru_theme_19.04_screenshot.png"/>
 
-This image show the **Ubuntu 19.04** after run 'Caruaru Theme'.  
-But, in this case of Ubuntu 19.4, the GTK Theme is **'Yaru-Dark'** (Ubuntu 19.04 default theme in dark mode)
+This image show the **Ubuntu 19.04** after run 'Caruaru Theme'.
