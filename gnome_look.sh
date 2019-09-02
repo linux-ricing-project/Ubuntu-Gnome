@@ -305,17 +305,27 @@ gnome_site="https://extensions.gnome.org"
     gsettings set org.gnome.shell.extensions.openweather unit "celsius"
     gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
 
-    echo "Disable Trash icon on Desktop"
-    gsettings set org.gnome.nautilus.desktop trash-icon-visible false
 
-    echo "Disable Network Servers icon on Desktop"
-    gsettings set org.gnome.nautilus.desktop network-icon-visible false
+    if [ "$ubuntu_version" != "19.04" ];then
+      echo "Disable Trash icon on Desktop"
+      gsettings set org.gnome.nautilus.desktop trash-icon-visible false
 
-    echo "Disable Home folder icon on Desktop"
-    gsettings set org.gnome.nautilus.desktop home-icon-visible false
+      echo "Disable Network Servers icon on Desktop"
+      gsettings set org.gnome.nautilus.desktop network-icon-visible false
 
-    echo "Disable Mounted Volumes icon on Desktop"
-    gsettings set org.gnome.nautilus.desktop volumes-visible false
+      echo "Disable Home folder icon on Desktop"
+      gsettings set org.gnome.nautilus.desktop home-icon-visible false
+
+      echo "Disable Mounted Volumes icon on Desktop"
+      gsettings set org.gnome.nautilus.desktop volumes-visible false
+    else
+      # caso seja o Ubuntu 19.04,ele mudou a forma de exibição dos ícones do Desktop.
+      # agora é através de uma 'extension' essa configuração.
+      echo "Disable Home folder icon on Desktop"
+      gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+      echo "Disable Trash icon on Desktop"
+      gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+    fi
 
     echo "Change control buttons to the left position"
     gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
