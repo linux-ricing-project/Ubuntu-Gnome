@@ -305,6 +305,9 @@ gnome_site="https://extensions.gnome.org"
     gsettings set org.gnome.shell.extensions.openweather unit "celsius"
     gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
 
+    echo "config Unite Extension"
+    gsettings set org.gnome.shell.extensions.unite desktop-name-text "Ubuntu"
+
 
     if [ "$ubuntu_version" != "19.04" ];then
       echo "Disable Trash icon on Desktop"
