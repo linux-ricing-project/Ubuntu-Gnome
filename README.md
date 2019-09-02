@@ -56,6 +56,10 @@ Icons: ```$HOME/.local/share/icons/```
 
 This image show the default **Ubuntu 18.04** with my default initial config (after running [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install)).
 
+<img src="images/reset_theme_19.04_screenshot.png"/>
+
+This image show the default **Ubuntu 19.04** with my default initial config (after running [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install)).
+
 ## Caruaru Theme
 
 ### To use:
@@ -102,3 +106,8 @@ Extensions:
 <img src="images/caruaru_theme_18.04_screenshot.png"/>
 
 This image show the **Ubuntu 18.04** after run 'Caruaru Theme'.
+
+<img src="images/caruaru_theme_19.04_screenshot.png"/>
+
+This image show the **Ubuntu 19.04** after run 'Caruaru Theme'.  
+But, in this case of Ubuntu 19.4, the GTK Theme is **'Yaru-Dark'** (Ubuntu 19.04 default theme in dark mode)

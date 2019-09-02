@@ -547,11 +547,11 @@ gnome_site="https://extensions.gnome.org"
     case "$gnome_look" in
       --caruaru)
         base
-        if [ "$ubuntu_version" != "19.04" ];then
+        # if [ "$ubuntu_version" != "19.04" ];then
           caruaru_look
-        else
-          caruaru_look_19_04
-        fi
+        # else
+        #   caruaru_look_19_04
+        # fi
       ;;
       --olinda)
         echo "olinda not implemented yet"
