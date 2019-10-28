@@ -8,10 +8,10 @@
 # Uso:
 #    ./gnome_look.sh --help
 #       - exibe mensagem de ajuda.
-# 
+#
 #    ./gnome_look.sh --<nome_do_look>
 #       - aplica a customização de acordo com cada look.
-# 
+#
 # Looks disponíveis:
 #   --caruaru
 #
@@ -207,7 +207,7 @@ gnome_site="https://extensions.gnome.org"
   }
 
   # ============================================
-  # Função que inicializa o script, 
+  # Função que inicializa o script,
   # criando os diretórios necessários
   # ============================================
   init(){
@@ -223,8 +223,8 @@ gnome_site="https://extensions.gnome.org"
     # criando o diretório de configuração do script.
     gnome_look_config_folder="$HOME/.config/gnome_look"
     reset_settings_file="$gnome_look_config_folder/gsettings_reset_backup.txt"
-    test -d "$gnome_look_config_folder" || { 
-      mkdir -p "$gnome_look_config_folder" 
+    test -d "$gnome_look_config_folder" || {
+      mkdir -p "$gnome_look_config_folder"
       _save_reset_settings
       }
 
@@ -360,7 +360,7 @@ gnome_site="https://extensions.gnome.org"
       wget --header='Accept-Encoding:none' -O "extensao.zip" "${extension_url}"
 
       unzip "extensao.zip" -d "$uuid"
-      rm -rf "extensao.zip" 
+      rm -rf "extensao.zip"
       mv "$uuid" "$extensions_path"
     fi
 
@@ -403,7 +403,7 @@ gnome_site="https://extensions.gnome.org"
 
     # Install Adapta Theme
     if [ ! -d "/usr/share/themes/Adapta" ];then
-      sudo add-apt-repository ppa:tista/adapta -y
+      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B76E53652D87398A
       sudo apt-get update
       sudo apt-get install -y adapta-gtk-theme
     fi
@@ -461,7 +461,7 @@ gnome_site="https://extensions.gnome.org"
 
     echo "set Adapta Theme"
     gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
-    
+
     echo "restart Gnome"
     gnome-shell --replace &>/dev/null & disown
     _print_info "OK"
