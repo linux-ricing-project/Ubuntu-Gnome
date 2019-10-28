@@ -404,6 +404,7 @@ gnome_site="https://extensions.gnome.org"
     # Install Adapta Theme
     if [ ! -d "/usr/share/themes/Adapta" ];then
       sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B76E53652D87398A
+      sudo apt-add-repository ppa:tista/adapta
       sudo apt-get update
       sudo apt-get install -y adapta-gtk-theme
     fi
