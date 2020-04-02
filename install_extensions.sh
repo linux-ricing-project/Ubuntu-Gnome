@@ -13,7 +13,7 @@
 # ============================================
 # Função de debug
 # ============================================
-log(){
+function log(){
   echo "[LOG] $*"
 }
 
@@ -21,7 +21,7 @@ log(){
 # Função auxiliar, que move todos os arquivos de schemas
 # para o diretório $local_schema_path
 # ============================================
-_move_schema_files(){
+function _move_schema_files(){
   export XDG_DATA_DIRS=~/.local/share:/usr/share
 
   find "$extensions_path" -name *gschema.xml -exec ln {} -sfn "$local_schema_path" \;
@@ -32,7 +32,7 @@ _move_schema_files(){
 # Função auxiliar, que instala genericamente qualquer extension
 # $1 - URL da extensão
 # ============================================
-_install_extension(){
+function _install_extension(){
   local extension_url="$1"
   # install all array extensions
   wget -q "$extension_url" -O "get_uuid_file.zip"
