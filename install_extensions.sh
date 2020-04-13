@@ -79,6 +79,7 @@ extensions=(
   # ${gnome_site}/extension-data/activities-confignls1729.v83.shell-extension.zip
   ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
   ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
+  ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
 )
 
 #  instala todas as extensões
@@ -105,3 +106,5 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 20
 
 log "Change 'show apps' button to the left"
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+
+gnome-shell --replace &>/dev/null & disown

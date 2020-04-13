@@ -80,3 +80,5 @@ gsettings set org.gnome.desktop.background picture-uri file:///home/${USER}/Pict
 log "Build lock screen wallpaper"
 convert /home/${USER}/Pictures/${wallpaper_file} -blur 0x8 /home/${USER}/Pictures/wallpaper_lockscreen.jpg
 gsettings set org.gnome.desktop.screensaver picture-uri file:///home/${USER}/Pictures/wallpaper_lockscreen.jpg
+
+gnome-shell --replace &>/dev/null & disown
