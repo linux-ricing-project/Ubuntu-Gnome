@@ -23,34 +23,55 @@ Script to customize GNOME with my visual preferences (themes + icon themes + ext
 
 # Description
 
-This script is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs). It works the following way:  
-Each customization have a name in reference a Pernambuco cities names, like 'Caruaru', 'Recife', 'Olinda' and so on.
+This script is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs).
 
-**It is don't have any visual similar with this cities, is just to name them.**
+**Install Folders:**
+| Type | Folder |
+| ------ | ------ |
+| Extensions | `$HOME/.local/share/gnome-shell/extensions` |
+| Icons | `$HOME/.local/share/icons/` |
+| Themes | `/usr/share/themes` |
 
-There are currently 2 themes:
-- **Reset Theme**: This theme reset all Ubuntu initial configs
+In this repository have some scripts:
 
-- **Caruaru Theme**: the first customization
+## 1. `install_extensions.sh`
+This script install Gnome extensions that i use:
+- [Blyr](https://extensions.gnome.org/extension/1251/blyr/)
+- [Apt-Update-Indicator](https://extensions.gnome.org/extension/1139/apt-update-indicator/)
+- [Glassy-Gnome](https://extensions.gnome.org/extension/982/glassy-gnome/)
+- [OpenWeather](https://extensions.gnome.org/extension/750/openweather/)
+- [User-Theme](https://extensions.gnome.org/extension/19/user-themes/)
 
-**Install Folders:**  
-Extensions: ```$HOME/.local/share/gnome-shell/extensions```  
-Icons: ```$HOME/.local/share/icons/```
+And apply some configs:
+- OpenWeather Unit: celsius
+- OpenWeather wind-speed-unit: kph
+- Apt-Update-Indicator update-cmd-options: update-manager
+- Set Dash position do BOTTOM
+- Change Dash icon size to 20
+- Change 'show apps' button to the left
 
-## Reset Theme
+## 2. `install_preferences.sh`
+This script apply some config Gnome preferences that i use:
+- show all hidden startup applications
+- uninstall `gnome-software` (so, i really don't use)
+- disable `gnome-welcome` to boot
+- set to 'do nothing' when laptop lid was closed
+- disable desktop icons (home folder, network folder, trash folder....)
+- change control buttons to the left position
+- set favorite-app in Dash
+- set [wallpaper](https://github.com/linux-ricing-project/Ubuntu-Gnome/blob/master/wallpaper/wallpaper.jpg) and lock-screen
 
-### To use:
-```bash
-./gnome_look --reset
-```
-### Features:
-- disable all extensions
-- reset gnome configs (with the initial values)
-- delete icons folder (`$HOME/.local/share/icons/`)
-- delete extensions folder (`$HOME/.local/share/gnome-shell/extensions`)
+## 3. `install_themes_and_icons.sh`
+This script install and apply my Gnome customizations:
+| Theme | Name | Applied |
+| ------ | ------ | ------ |
+| GTK | [Arc-Dark](https://github.com/horst3180/arc-theme) | YES
+| Gnome-Shell | [Arc-Dark](https://github.com/horst3180/arc-theme) | YES
+| Icons | [Korla](https://github.com/bikass/korla) + [Korla Folders](https://github.com/bikass/korla-folders) | YES
+| Cursor | [Breeze](https://www.gnome-look.org/p/999991/) | YES
+
 
 ### Example:
-
 
 <img src="images/reset_theme_18.04_screenshot.png"/>
 
@@ -60,53 +81,11 @@ This image show the default **Ubuntu 18.04** with my default initial config (aft
 
 This image show the default **Ubuntu 19.04** with my default initial config (after running [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install)).
 
-## Caruaru Theme
-
-### To use:
-```bash
-./gnome_look --caruaru
-```
-
-### Features:
-
-**Base Configs:**
-
-Configs:
-- show all hidden startup applications
-- uninstall `gnome-software` (so, i really don't use)
-- disable `gnome-welcome` to boot
-- set to 'do nothing' when laptop lid was closed
-- disable desktop icons (home folder, network folder, trash folder....)
-- change control buttons to the left position
-
-Extensions:
-- [Unite](https://github.com/hardpixel/unite-shell)
-- [OpenWeather](https://extensions.gnome.org/extension/750/openweather/)
-
-**Theme Configs:**
-
-  Configs:
-  - set Dash position to BOTTOM
-  - change Dash icon size to 20
-  - change 'show apps' button to the left
-  - set my favorite-apps in Dash
-  - set wallpaper and lock screen (with blur effect)
-
-  Theme:
-  - [Adapta](https://github.com/adapta-project/adapta-gtk-theme)
-
-  Icons:
-  - [Korla](https://github.com/bikass/korla)
-  - [Korla Folders](https://github.com/bikass/korla-folders)
-
-
-### Example:
-
 
 <img src="images/caruaru_theme_18.04_screenshot.png"/>
 
-This image show the **Ubuntu 18.04** after run 'Caruaru Theme'.
+This image show the **Ubuntu 18.04** after run all scripts.
 
 <img src="images/caruaru_theme_19.04_screenshot.png"/>
 
-This image show the **Ubuntu 19.04** after run 'Caruaru Theme'.
+This image show the **Ubuntu 19.04** after run all scripts.
