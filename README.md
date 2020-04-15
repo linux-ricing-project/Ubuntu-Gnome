@@ -1,4 +1,4 @@
-# GNOME Look
+# Ubuntu-Gnome
 
 <p align="center">
   <a href="https://github.com/linux-ricing-project/ubuntu_install">
@@ -19,11 +19,11 @@
   </a>
 </p>
 
-Script to customize GNOME with my visual preferences (themes + icon themes + extensions and so on)
+Project to customize GNOME with my visual preferences (themes + icon themes + visual preferences and so on)
 
 # Description
 
-This script is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs).
+This project is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs).
 
 **Install Folders:**
 | Type | Folder |
@@ -63,7 +63,7 @@ This script apply some config Gnome preferences that i use:
 
 ## 3. `install_themes_and_icons.sh`
 This script install and apply my Gnome customizations:
-| Theme | Name | Applied |
+| Theme | Name | Apply |
 | ------ | ------ | ------ |
 | GTK | [Arc-Dark](https://github.com/horst3180/arc-theme) | YES
 | Gnome-Shell | [Arc-Dark](https://github.com/horst3180/arc-theme) | YES
