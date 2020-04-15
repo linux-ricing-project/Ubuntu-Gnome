@@ -73,19 +73,7 @@ This script install and apply my Gnome customizations:
 
 ### Example:
 
-<img src="images/reset_theme_18.04_screenshot.png"/>
 
-This image show the default **Ubuntu 18.04** with my default initial config (after running [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install)).
-
-<img src="images/reset_theme_19.04_screenshot.png"/>
-
-This image show the default **Ubuntu 19.04** with my default initial config (after running [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install)).
-
-
-<img src="images/caruaru_theme_18.04_screenshot.png"/>
+<img src="images/ubuntu_18.04_screenshot.png"/>
 
 This image show the **Ubuntu 18.04** after run all scripts.
-
-<img src="images/caruaru_theme_19.04_screenshot.png"/>
-
-This image show the **Ubuntu 19.04** after run all scripts.
