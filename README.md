@@ -19,9 +19,9 @@
   </a>
 </p>
 
-Project to customize GNOME with my visual preferences (themes + icon themes + visual preferences and so on)
-
 # Description
+
+Project to customize GNOME with my visual preferences (themes + icon themes + visual preferences and so on).
 
 This project is recommended to run after [ubuntu_install](https://github.com/linux-ricing-project/ubuntu_install) (that make the initial configs).
 
