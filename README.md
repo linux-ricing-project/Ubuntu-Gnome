@@ -71,6 +71,12 @@ This script install and apply my Gnome customizations:
 | Cursor | [Breeze](https://www.gnome-look.org/p/999991/) | YES
 
 
+## 4. `file_manager_preferences.sh`
+Script that configure my preferences in File Manager (Nautilus)
+
+**Features**
+- change icon folders ([Korla](https://github.com/bikass/korla-folders)-based)
+
 ### Example:
 
 
