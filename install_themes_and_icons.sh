@@ -64,7 +64,10 @@ function install_arc_dark_theme(){
     ./autogen.sh --prefix=/usr
     sudo make install
 
+    # GTK theme
     gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
+    # Gnome-Shell theme
+    gsettings set org.gnome.shell.extensions.user-theme name "Arc-Dark"
 }
 
 # ============================================
@@ -78,8 +81,6 @@ function install_FlatRemix_Gnome_Shell(){
     sudo wget "$flat_remix_dark_url"
     sudo tar xf *.tar.xz
     sudo rm -rf *.tar.xz
-
-    gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Dark"
 }
 
 # ============================================
