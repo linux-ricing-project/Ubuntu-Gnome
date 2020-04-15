@@ -75,7 +75,7 @@ function install_FlatRemix_Gnome_Shell(){
     local flat_remix_dark_url="https://dllb2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE1ODY3MTUyNjEiLCJ1IjpudWxsLCJsdCI6ImRvd25sb2FkIiwicyI6ImFjMWUyMmY0MTY2MjE3OTU1NzgzZGY2YWEyMWQ2YTBkYTE2OTU0Mzg5YjdmM2YwMTMzZTU3YjZhNzZiMzE1YmM3NTRjNDA0ZmE5MjA3MGExNjY1NzcxNTMxZGQ5M2RlNmNmMTdjNDZjZTc0ZThhYTRmM2E3YzYzNzM2OTllZjZlIiwidCI6MTU4Njc0MDI2NSwic3RmcCI6IjAzZjgxNjg3Y2JlOGUwMzdmNGQ3ZTBkOWQzN2ExODZkIiwic3RpcCI6IjI4MDQ6MTRkOjU0ODE6ODMzOTo6MTAwMSJ9.xFS1Qp2ycsJCf6kOZMFVxnN5P3VcRDph_A5G4133wXk/03-Flat-Remix-Dark_20200412.tar.xz"
 
     cd /usr/share/themes
-    sudo wget "$flat_remix_dark_url" 
+    sudo wget "$flat_remix_dark_url"
     sudo tar xf *.tar.xz
     sudo rm -rf *.tar.xz
 
@@ -93,8 +93,8 @@ log "Install Breeze Cursors..."
 install_breeze_cursor
 log "Install Arc-Dark GTK theme..."
 install_arc_dark_theme
-log "Install FlatRemix Gnome-Shell theme..."
-install_FlatRemix_Gnome_Shell
+# log "Install FlatRemix Gnome-Shell theme..."
+# install_FlatRemix_Gnome_Shell
 
 log "refreshing Gnome..."
 gnome-shell --replace &>/dev/null & disown
