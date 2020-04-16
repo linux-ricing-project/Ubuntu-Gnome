@@ -80,6 +80,7 @@ if [ ! -d "${HOME}/.config/gtk-3.0" ];then
 	mkdir -p "${HOME}/.config/gtk-3.0"
 fi
 cp utils/gnome-settings/bookmarks "${HOME}/.config/gtk-3.0"
+sed -i "s/@user@/$(whoami)/g" "${HOME}/.config/gtk-3.0"
 
 log "Set Wallpaper"
 wallpaper_file="wallpaper.jpg"
