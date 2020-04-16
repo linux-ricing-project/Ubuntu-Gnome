@@ -53,7 +53,7 @@ And apply some configs:
 ## 2. `install_preferences.sh`
 This script apply some config Gnome preferences that i use:
 - show all hidden startup applications
-- uninstall `gnome-software` (so, i really don't use)
+- **uninstall `gnome-software` (so, i really don't use)**
 - disable `gnome-welcome` to boot
 - set to 'do nothing' when laptop lid was closed
 - apply my gnome shortcuts*
@@ -67,7 +67,7 @@ This script apply some config Gnome preferences that i use:
 ***Shortcuts:**
 | Command | Shortcut |
 | ------ | ------ |
-nautilus | `<Super> + E`
+| Nautilus | `<Super> + E`
 
 ## 3. `install_themes_and_icons.sh`
 This script install and apply my Gnome customizations:
