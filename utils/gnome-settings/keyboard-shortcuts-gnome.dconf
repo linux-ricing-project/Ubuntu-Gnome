@@ -1,6 +1,8 @@
 [power]
+sleep-inactive-ac-type='nothing'
 lid-close-battery-action='nothing'
 lid-close-ac-action='nothing'
+sleep-inactive-ac-timeout=3600
 
 [media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
