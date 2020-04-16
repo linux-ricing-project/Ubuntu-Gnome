@@ -75,6 +75,12 @@ log "Apply clock configs"
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 
+log "Apply Nautilus bookmarks"
+if [ ! -d "${HOME}/.config/gtk-3.0" ];then
+	mkdir -p "${HOME}/.config/gtk-3.0"
+fi
+cp utils/gnome-settings/bookmarks "${HOME}/.config/gtk-3.0"
+
 log "Set Wallpaper"
 wallpaper_file="wallpaper.jpg"
 cp "wallpaper/${wallpaper_file}" "$HOME/Pictures"

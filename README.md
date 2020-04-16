@@ -56,11 +56,18 @@ This script apply some config Gnome preferences that i use:
 - uninstall `gnome-software` (so, i really don't use)
 - disable `gnome-welcome` to boot
 - set to 'do nothing' when laptop lid was closed
+- apply my gnome shortcuts*
 - disable desktop icons (home folder, network folder, trash folder....)
 - change control buttons to the left position
 - set favorite-app in Dash
 - set clock configs (show seconds and show date)
+- apply file manager bookmarks
 - set [wallpaper](https://github.com/linux-ricing-project/Ubuntu-Gnome/blob/master/wallpaper/wallpaper.jpg) and lock-screen
+
+***Shortcuts:**
+| Command | Shortcut |
+| ------ | ------ |
+nautilus | `<Super> + E`
 
 ## 3. `install_themes_and_icons.sh`
 This script install and apply my Gnome customizations:
