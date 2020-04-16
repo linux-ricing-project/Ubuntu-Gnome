@@ -59,6 +59,7 @@ This script apply some config Gnome preferences that i use:
 - disable desktop icons (home folder, network folder, trash folder....)
 - change control buttons to the left position
 - set favorite-app in Dash
+- set clock configs (show seconds and show date)
 - set [wallpaper](https://github.com/linux-ricing-project/Ubuntu-Gnome/blob/master/wallpaper/wallpaper.jpg) and lock-screen
 
 ## 3. `install_themes_and_icons.sh`

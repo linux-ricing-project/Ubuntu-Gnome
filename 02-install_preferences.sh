@@ -72,6 +72,10 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,max
 log "Set favorite-app in Dash"
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'terminator.desktop', 'spotify.desktop']"
 
+log "Apply clock configs"
+gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface clock-show-seconds true
+
 log "Set Wallpaper"
 wallpaper_file="wallpaper.jpg"
 cp "wallpaper/${wallpaper_file}" "$HOME/Pictures"
