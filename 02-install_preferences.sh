@@ -29,7 +29,7 @@ fi
 # exibindo todos os pacotes que são carregados no boot.
 # (através dessa linha, dá pra gerenciar melhor usando o 'Startup Applications')
 if grep -q -r "NoDisplay=true" /etc/xdg/autostart/*.desktop; then
-  log "showing all the startup applicaitons..."
+  log "showing all the startup applications..."
   sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
 fi
 
@@ -40,9 +40,8 @@ test -f /etc/xdg/autostart/gnome-welcome-tour.desktop && (
   echo -e '[Desktop Entry]\nHidden=true' > ~/.config/autostart/gnome-welcome-tour.desktop
 )
 
-log "applying power config preferences"
-gsettings set org.gnome.settings-daemon.plugins.power lid-close-battery-action "nothing"
-gsettings set org.gnome.settings-daemon.plugins.power lid-close-ac-action "nothing"
+log "applying power and keyboard config preferences"
+dconf load /org/gnome/settings-daemon/plugins/ < utils/gnome-settings/keyboard-shortcuts-gnome.dconf
 
 ubuntu_version=$(cat /etc/lsb-release | grep "DISTRIB_RELEASE" | cut -d "=" -f2)
 if [ "$ubuntu_version" != "19.04" ];then

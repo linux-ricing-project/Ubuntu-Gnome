@@ -1,0 +1,14 @@
+[power]
+lid-close-battery-action='nothing'
+lid-close-ac-action='nothing'
+
+[media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[media-keys/custom-keybindings/custom0]
+binding='<Super>e'
+command='nautilus'
+name='Open FileManager'
+
+[xsettings]
+hinting='slight'
