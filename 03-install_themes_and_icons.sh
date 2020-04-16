@@ -20,7 +20,7 @@ function install_korla_icons(){
     local korla_temp_folder="/tmp/korla_temp"
     # Instala o pacote de ícones 'Korla'
     # ------------------------------------------------------------------
-    echo "install Korla icon theme"
+    log "install Korla icon theme"
     [[ -e "${icons_path}/korla" ]] && rm -rf "${icons_path}/korla"
     [[ -e "${icons_path}/korla-light" ]] && rm -rf "${icons_path}/korla-light"
 
@@ -30,7 +30,7 @@ function install_korla_icons(){
 
     # Instala o pacote de folders do 'Korla'
     # o modo de instalação está no github deles.
-    echo "install Korla icon folder"
+    log "install Korla icon folder"
     git clone https://github.com/bikass/korla-folders.git
     cd korla-folders
     unzip -x places_1.zip
@@ -40,8 +40,11 @@ function install_korla_icons(){
 
     rm -rf "$korla_temp_folder"
 
-    echo "set icons to Korla"
+    log "set icons to Korla"
     gsettings set org.gnome.desktop.interface icon-theme "korla"
+
+    # apply korla icon folders in some folders
+    bash utils/korla_folders_apply.sh
 }
 
 # ============================================

@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description:
-#    Script that configure my preferences in File Manager (Nautilus)
+#    Script that change some icon folders based in Korla Folders
 #
 ################################################################################
 # Autor: Frank Junior <frankcbjunior@gmail.com>
