@@ -90,6 +90,18 @@ function install_FlatRemix_Gnome_Shell(){
 }
 
 # ============================================
+# Função que dá refresh no Gnome
+# ============================================
+function refresh_gnome(){
+  # o refresh no Gnome só é necessário no Ubuntu 18.04.
+  # No Ubuntu 20.04, ele já dá refresh sozinho
+  if [ "$ubuntu_version" == "18.04" ];then
+    log "refreshing Gnome..."
+    gnome-shell --replace &>/dev/null & disown
+  fi
+}
+
+# ============================================
 # Main
 # ============================================
 log "Inicializing..."
@@ -103,5 +115,4 @@ install_arc_dark_theme
 # log "Install FlatRemix Gnome-Shell theme..."
 # install_FlatRemix_Gnome_Shell
 
-log "refreshing Gnome..."
-gnome-shell --replace &>/dev/null & disown
+refresh_gnome
