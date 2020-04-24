@@ -25,7 +25,7 @@ function change_gdm_profile(){
   cp utils/profile.png ${HOME}/.face
 
   log "Change profile picture"
-  if grep -q "^Icon=" /var/lib/AccountsService/users/$USER;then
+  if sudo grep -q "^Icon=" /var/lib/AccountsService/users/$USER;then
     sudo sed -i "s|Icon=.*|Icon=${HOME}/.face|g" /var/lib/AccountsService/users/$USER
   else
     sudo bash -c "echo \"Icon=${HOME}/.face\" >> /var/lib/AccountsService/users/$USER"
