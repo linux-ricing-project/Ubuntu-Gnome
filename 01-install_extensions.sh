@@ -23,6 +23,8 @@ function log(){
 function init(){
   gnome_site="https://extensions.gnome.org"
 
+  ubuntu_version=$(grep "DISTRIB_RELEASE" /etc/lsb-release | cut -d "=" -f2)
+
   # extensions folder
   log "Criando diretório de extensões"
   extensions_path="$HOME/.local/share/gnome-shell/extensions"
@@ -143,8 +145,8 @@ function configure_others_extensions(){
   gsettings set org.gnome.shell.extensions.activities-config activities-icon-scale-factor 1.8
 
   log "Apply Activities-Configurator text"
-  local ubuntu_version=$(grep "DISTRIB_DESCRIPTION" /etc/lsb-release | cut -d "=" -f2 | sed 's/ LTS//g' | sed 's/"//g')
-  gsettings set org.gnome.shell.extensions.activities-config activities-config-button-text "$ubuntu_version"
+  local ubuntu_description=$(grep "DISTRIB_DESCRIPTION" /etc/lsb-release | cut -d "=" -f2 | sed 's/ LTS//g' | sed 's/"//g')
+  gsettings set org.gnome.shell.extensions.activities-config activities-config-button-text "$ubuntu_description"
 
   log "Apply Activities-Configurator disable hot-corner"
   gsettings set org.gnome.shell.extensions.activities-config activities-config-hot-corner true
