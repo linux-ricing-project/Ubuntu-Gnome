@@ -76,7 +76,7 @@ function _install_extension(){
   if [ "$ubuntu_version" == "18.04" ];then
     gnome-shell-extension-tool --enable-extension "$uuid"
   elif [ "$ubuntu_version" == "20.04" ];then
-    gnome-extensions --enable-extension "$uuid"
+    gnome-extensions enable "$uuid"
   fi
 }
 
