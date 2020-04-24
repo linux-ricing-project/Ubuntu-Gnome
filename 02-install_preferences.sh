@@ -17,6 +17,21 @@ function log(){
   echo "[LOG] $*"
 }
 
+# ============================================
+# Função que muda a imagem do perfil no GDM
+# ============================================
+function change_gdm_profile(){
+  log "Copy profile picture"
+  cp utils/profile.png ${HOME}/.face
+
+  log "Change profile picture"
+  if grep -q "^Icon=" /var/lib/AccountsService/users/$USER;then
+    sudo sed -i "s|Icon=.*|Icon=${HOME}/.face|g" /var/lib/AccountsService/users/$USER
+  else
+    sudo echo "Icon=${HOME}/.face" >> /var/lib/AccountsService/users/$USER
+  fi
+}
+
 # desinstalando o gnome-software (a loja de aplicativo do Ubuntu).
 # é..eu não uso ele pra nada mesmo, resolvi desinstalar por padrão
 if type gnome-software > /dev/null 2>&1; then
@@ -83,11 +98,7 @@ cp utils/gnome-settings/bookmarks "${HOME}/.config/gtk-3.0"
 sed -i "s/@user@/$(whoami)/g" "${HOME}/.config/gtk-3.0/bookmarks"
 
 # mudando a imagem do profile no GDM
-log "Copy profile picture"
-cp utils/profile.png ${HOME}/Picture/.face.png
-
-log "Change profile picture"
-sudo sed -i "s|Icon=.*|Icon=${HOME}/Picture/.face.png|g" /var/lib/AccountsService/users/$USER
+change_gdm_profile
 
 log "Set Wallpaper"
 wallpaper_file="wallpaper.jpg"
