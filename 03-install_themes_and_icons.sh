@@ -7,6 +7,9 @@ function log(){
   echo "[LOG] $*"
 }
 
+# ============================================
+# Função de inicialização
+# ============================================
 function init(){
     current_folder=$(pwd)
     ubuntu_version=$(grep "DISTRIB_RELEASE" /etc/lsb-release | cut -d "=" -f2)

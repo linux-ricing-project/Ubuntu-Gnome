@@ -18,6 +18,28 @@ function log(){
 }
 
 # ============================================
+# Função de inicialização
+# ============================================
+function init(){
+  gnome_site="https://extensions.gnome.org"
+
+  # extensions folder
+  log "Criando diretório de extensões"
+  extensions_path="$HOME/.local/share/gnome-shell/extensions"
+  test -d "$extensions_path" || mkdir -p "$extensions_path"
+
+  #  move todos os arquivos de schema para os diretórios locais e compila
+  # isso é ncessaŕio principalmente para algumas extebnsões serem configuradas através do gsettings
+  log "Criando diretório de schemas"
+  local_schema_path="$HOME/.local/share/glib-2.0/schemas/"
+  test -d "$local_schema_path" || mkdir -p "$local_schema_path"
+
+  # desabilita todas as extensões
+  log "Desabilitando todas as extensões"
+  gsettings set org.gnome.shell enabled-extensions "[]"
+}
+
+# ============================================
 # Função auxiliar, que move todos os arquivos de schemas
 # para o diretório $local_schema_path
 # ============================================
@@ -29,7 +51,9 @@ function _move_schema_files(){
 }
 
 # ============================================
-# Função auxiliar, que instala genericamente qualquer extension
+# Função auxiliar, que instala genericamente
+# qualquer extension individualmente
+# Params:
 # $1 - URL da extensão
 # ============================================
 function _install_extension(){
@@ -65,58 +89,80 @@ function refresh_gnome(){
 }
 
 # ============================================
+# Função que instala todas as extensões
+# ============================================
+function install_all_extensions(){
+  extensions=(
+    ${gnome_site}/extension-data/dash-to-dockmicxgx.gmail.com.v68.shell-extension.zip
+    ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
+    ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
+    ${gnome_site}/extension-data/activities-confignls1729.v84.shell-extension.zip
+    ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
+    ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
+    ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
+  )
+
+  #  instala todas as extensões
+  log "Install all extensions"
+  for extension_url in "${extensions[@]}";do
+    _install_extension "$extension_url"
+  done
+
+  # linka os schemas
+  _move_schema_files
+}
+
+# ============================================
+# Função que configura a extensão Dash-to-Dock
+# ============================================
+function configure_dash_to_dock_extensions(){
+  log "Apply Dash color"
+  gsettings set org.gnome.shell.extensions.dash-to-dock custom-background-color true
+  gsettings set org.gnome.shell.extensions.dash-to-dock background-color "#000000"
+  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity "0.9"
+
+  log "Apply Dash indicator style"
+  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-customize-running-dots true
+  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-color "#CE5C00"
+  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-color "#CE5C00"
+  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-width 0
+  gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-style "SEGMENTED"
+
+  log "Apply Dash icon size to 20"
+  gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 20
+  log "Apply Dash always visible"
+  gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
+  log "Apply Dash fill all space"
+  gsettings set org.gnome.shell.extensions.dash-to-dock extend-height true
+  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-shrink true
+
+  log "Apply Dash to bottom"
+  gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+  log "Apply Dash to intelligent hide"
+  gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
+  log "Apply Dash to hide trash icon"
+  gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
+  log "Apply Dash button to the left"
+  gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+}
+
+# ============================================
+# Função que configura as outras extensões
+# ============================================
+function configure_others_extesnions(){
+  log "config OpenWeather Extension"
+  gsettings set org.gnome.shell.extensions.openweather unit "celsius"
+  gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
+
+  log "config Apt-Update-Indicator Extension"
+  gsettings set org.gnome.shell.extensions.apt-update-indicator update-cmd-options update-manager
+}
+
+# ============================================
 # Main
 # ============================================
-gnome_site="https://extensions.gnome.org"
-
-# extensions folder
-log "Criando diretório de extensões"
-extensions_path="$HOME/.local/share/gnome-shell/extensions"
-test -d "$extensions_path" || mkdir -p "$extensions_path"
-
-#  move todos os arquivos de schema para os diretórios locais e compila
-# isso é ncessaŕio principalmente para algumas extebnsões serem configuradas através do gsettings
-log "Criando diretório de schemas"
-local_schema_path="$HOME/.local/share/glib-2.0/schemas/"
-test -d "$local_schema_path" || mkdir -p "$local_schema_path"
-
-# desabilita todas as extensões
-log "Desabilitando todas as extensões"
-gsettings set org.gnome.shell enabled-extensions "[]"
-
-# OBS: A extensão Activities-Configurator tava dando problema, depois eu vejo
-extensions=(
-  ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
-  ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
-  # ${gnome_site}/extension-data/activities-confignls1729.v83.shell-extension.zip
-  ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
-  ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
-  ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
-)
-
-#  instala todas as extensões
-log "Instalando todas as extensões"
-for extension_url in "${extensions[@]}";do
-  _install_extension "$extension_url"
-done
-
-# linka os schemas
-_move_schema_files
-
-log "config OpenWeather Extension"
-gsettings set org.gnome.shell.extensions.openweather unit "celsius"
-gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
-
-log "config Apt-Update-Indicator Extension"
-gsettings set org.gnome.shell.extensions.apt-update-indicator update-cmd-options update-manager
-
-log "Set Dash position do BOTTOM"
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-
-log "Change Dash icon size to 20"
-gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 20
-
-log "Change 'show apps' button to the left"
-gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
-
+init
+install_all_extensions
+configure_others_extesnions
+configure_dash_to_dock_extensions
 refresh_gnome
