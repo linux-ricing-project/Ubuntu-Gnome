@@ -84,10 +84,8 @@ function _install_arc_dark_theme(){
 # Install Nordic GTK theme
 # ============================================
 function _install_nordic_theme(){
-  git clone https://github.com/EliverLara/Nordic.git ${HOME}/Downloads
-  sudo mv ${HOME}/Downloads/*.zip "$themes_folder"
-  sudo unzip "${themes_folder}/*.zip"
-  sudo rm -rf "${themes_folder}/*.zip"
+  git clone https://github.com/EliverLara/Nordic.git ${HOME}/Downloads/Nordic
+  sudo mv ${HOME}/Downloads/Nordic "$themes_folder"
 
   # aplica o theme
   gsettings set org.gnome.desktop.interface gtk-theme "Nordic"

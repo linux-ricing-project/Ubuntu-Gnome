@@ -62,11 +62,14 @@ function set_home_hidden_folders(){
 function set_icon_all_github_folders(){
   local root_folder="${HOME}/Dropbox/development"
 
-  for git_folder in $(find "$root_folder" -iname ".git"); do
-    if grep -q "github" "$git_folder/config";then
-      set_icon_folder "$(dirname $git_folder)" "${icons_folder}/folder-github.svg"
-    fi
-  done
+  if [ -d "$root_folder" ];then
+    for git_folder in $(find "$root_folder" -iname ".git"); do
+      if grep -q "github" "$git_folder/config";then
+        set_icon_folder "$(dirname $git_folder)" "${icons_folder}/folder-github.svg"
+      fi
+    done
+  fi
+
 }
 
 # ============================================

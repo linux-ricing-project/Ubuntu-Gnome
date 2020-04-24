@@ -73,7 +73,11 @@ function _install_extension(){
     mv "$uuid" "$extensions_path"
   fi
 
-  gnome-shell-extension-tool --enable-extension "$uuid"
+  if [ "$ubuntu_version" == "18.04" ];then
+    gnome-shell-extension-tool --enable-extension "$uuid"
+  elif [ "$ubuntu_version" == "20.04" ];then
+    gnome-extensions --enable-extension "$uuid"
+  fi
 }
 
 # ============================================
@@ -126,12 +130,24 @@ function configure_dash_to_dock_extensions(){
 # Função que configura as outras extensões
 # ============================================
 function configure_others_extensions(){
-  log "config OpenWeather Extension"
+  log "Config OpenWeather Extension"
   gsettings set org.gnome.shell.extensions.openweather unit "celsius"
   gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
 
-  log "config Apt-Update-Indicator Extension"
+  log "Config Apt-Update-Indicator Extension"
   gsettings set org.gnome.shell.extensions.apt-update-indicator update-cmd-options update-manager
+
+  log "Apply Activities-Configurator icon"
+  local ubuntu_icon="$(pwd)/ubuntu_icon.svg"
+  gsettings set org.gnome.shell.extensions.activities-config activities-config-button-icon-path "$ubuntu_icon"
+  gsettings set org.gnome.shell.extensions.activities-config activities-icon-scale-factor 1.8
+
+  log "Apply Activities-Configurator text"
+  local ubuntu_version=$(grep "DISTRIB_DESCRIPTION" /etc/lsb-release | cut -d "=" -f2 | sed 's/ LTS//g' | sed 's/"//g')
+  gsettings set org.gnome.shell.extensions.activities-config activities-config-button-text "$ubuntu_version"
+
+  log "Apply Activities-Configurator disable hot-corner"
+  gsettings set org.gnome.shell.extensions.activities-config activities-config-hot-corner true
 }
 
 # ============================================

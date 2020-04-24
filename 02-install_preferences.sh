@@ -28,7 +28,7 @@ function change_gdm_profile(){
   if grep -q "^Icon=" /var/lib/AccountsService/users/$USER;then
     sudo sed -i "s|Icon=.*|Icon=${HOME}/.face|g" /var/lib/AccountsService/users/$USER
   else
-    sudo echo "Icon=${HOME}/.face" >> /var/lib/AccountsService/users/$USER
+    sudo bash -c "echo \"Icon=${HOME}/.face\" >> /var/lib/AccountsService/users/$USER"
   fi
 }
 
