@@ -22,7 +22,7 @@ function log(){
 # ============================================
 function init(){
   gnome_site="https://extensions.gnome.org"
-
+  current_folder=$(pwd)
   ubuntu_version=$(grep "DISTRIB_RELEASE" /etc/lsb-release | cut -d "=" -f2)
 
   # extensions folder
@@ -140,6 +140,7 @@ function configure_others_extensions(){
   gsettings set org.gnome.shell.extensions.apt-update-indicator update-cmd-options update-manager
 
   log "Apply Activities-Configurator icon"
+  cd "$current_folder"
   local ubuntu_icon="$(pwd)/ubuntu_icon.svg"
   gsettings set org.gnome.shell.extensions.activities-config activities-config-button-icon-path "$ubuntu_icon"
   gsettings set org.gnome.shell.extensions.activities-config activities-icon-scale-factor 1.8
