@@ -82,6 +82,13 @@ fi
 cp utils/gnome-settings/bookmarks "${HOME}/.config/gtk-3.0"
 sed -i "s/@user@/$(whoami)/g" "${HOME}/.config/gtk-3.0/bookmarks"
 
+# mudando a imagem do profile no GDM
+log "Copy profile picture"
+cp utils/profile.png ${HOME}/Picture/.face.png
+
+log "Change profile picture"
+sudo sed -i "s|Icon=.*|Icon=${HOME}/Picture/.face.png|g" /var/lib/AccountsService/users/$USER
+
 log "Set Wallpaper"
 wallpaper_file="wallpaper.jpg"
 cp "wallpaper/${wallpaper_file}" "$HOME/Pictures"
