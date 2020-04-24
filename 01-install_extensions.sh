@@ -91,6 +91,8 @@ function refresh_gnome(){
   if [ "$ubuntu_version" == "18.04" ];then
     log "refreshing Gnome..."
     gnome-shell --replace &>/dev/null & disown
+  elif [ "$ubuntu_version" == "20.04" ];then
+    gnome-session-quit
   fi
 }
 
