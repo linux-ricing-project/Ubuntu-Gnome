@@ -9,6 +9,8 @@ function log(){
 
 function init(){
     current_folder=$(pwd)
+    ubuntu_version=$(grep "DISTRIB_RELEASE" /etc/lsb-release | cut -d "=" -f2)
+    themes_folder="/usr/share/themes"
 
     # icons folder
     icons_path="$HOME/.local/share/icons/"
@@ -63,30 +65,57 @@ function install_breeze_cursor(){
 # ============================================
 # Install Arc-Dark GTK theme
 # ============================================
-function install_arc_dark_theme(){
+function _install_arc_dark_theme(){
     # install dependencies
     sudo apt install -y autoconf automake pkg-config libgtk-3-dev gnome-themes-standard gtk2-engines-murrine
     cd ~/bin && git clone https://github.com/horst3180/arc-theme --depth 1 && cd arc-theme
     ./autogen.sh --prefix=/usr
     sudo make install
 
-    # GTK theme
+    # aplica o theme
     gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
-    # Gnome-Shell theme
     gsettings set org.gnome.shell.extensions.user-theme name "Arc-Dark"
+}
+
+# ============================================
+# Install Nordic GTK theme
+# ============================================
+function _install_nordic_theme(){
+  git clone https://github.com/EliverLara/Nordic.git ${HOME}/Downloads
+  sudo mv ${HOME}/Downloads/*.zip "$themes_folder"
+  sudo unzip "${themes_folder}/*.zip"
+  sudo rm -rf "${themes_folder}/*.zip"
+
+  # aplica o theme
+  gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+  gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+}
+
+# ============================================
+# Function that install and apply all GTK themes
+# ============================================
+function install_gtk_theme(){
+  # se for Ubuntu 18.04, instale e aplique o Arc-Dark
+  # Se for Ubuntu 20.04, instale e aplique o Nordic
+  if [ "$ubuntu_version" == "18.04" ];then
+    log "Install Arc-Dark GTK theme..."
+    _install_arc_dark_theme
+  elif [ "$ubuntu_version" == "20.04" ];then
+    log "Install Nordic theme..."
+    _install_nordic_theme
+  fi
+
 }
 
 # ============================================
 # Install Flat-Remix-dark Gnome-Shell theme
 # ============================================
 function install_FlatRemix_Gnome_Shell(){
-    # https://www.gnome-look.org/p/1013030/
-    local flat_remix_dark_url="https://dllb2.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE1ODY3MTUyNjEiLCJ1IjpudWxsLCJsdCI6ImRvd25sb2FkIiwicyI6ImFjMWUyMmY0MTY2MjE3OTU1NzgzZGY2YWEyMWQ2YTBkYTE2OTU0Mzg5YjdmM2YwMTMzZTU3YjZhNzZiMzE1YmM3NTRjNDA0ZmE5MjA3MGExNjY1NzcxNTMxZGQ5M2RlNmNmMTdjNDZjZTc0ZThhYTRmM2E3YzYzNzM2OTllZjZlIiwidCI6MTU4Njc0MDI2NSwic3RmcCI6IjAzZjgxNjg3Y2JlOGUwMzdmNGQ3ZTBkOWQzN2ExODZkIiwic3RpcCI6IjI4MDQ6MTRkOjU0ODE6ODMzOTo6MTAwMSJ9.xFS1Qp2ycsJCf6kOZMFVxnN5P3VcRDph_A5G4133wXk/03-Flat-Remix-Dark_20200412.tar.xz"
+  sudo add-apt-repository -y ppa:daniruiz/flat-remix
+  sudo apt update
+  sudo apt install -y flat-remix-gnome
 
-    cd /usr/share/themes
-    sudo wget "$flat_remix_dark_url"
-    sudo tar xf *.tar.xz
-    sudo rm -rf *.tar.xz
+  gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix-Dark"
 }
 
 # ============================================
@@ -110,9 +139,10 @@ log "Install Korla Icons..."
 install_korla_icons
 log "Install Breeze Cursors..."
 install_breeze_cursor
-log "Install Arc-Dark GTK theme..."
-install_arc_dark_theme
-# log "Install FlatRemix Gnome-Shell theme..."
-# install_FlatRemix_Gnome_Shell
+
+install_gtk_theme
+
+log "Install FlatRemix Gnome-Shell theme..."
+install_FlatRemix_Gnome_Shell
 
 refresh_gnome

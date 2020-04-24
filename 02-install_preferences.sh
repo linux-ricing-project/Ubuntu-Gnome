@@ -130,7 +130,7 @@ function refresh_gnome(){
 # ============================================
 # Main
 # ============================================
-ubuntu_version=$(cat /etc/lsb-release | grep "DISTRIB_RELEASE" | cut -d "=" -f2)
+ubuntu_version=$(grep "DISTRIB_RELEASE" /etc/lsb-release | cut -d "=" -f2)
 
 uninstall_unused_softwares
 apply_config_preferences
