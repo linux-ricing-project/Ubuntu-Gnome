@@ -110,7 +110,8 @@ function configure_dash_to_dock_extensions(){
   log "Apply Dash color"
   gsettings set org.gnome.shell.extensions.dash-to-dock custom-background-color true
   gsettings set org.gnome.shell.extensions.dash-to-dock background-color "#000000"
-  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity "0.9"
+  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity "0.8"
+  gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode "FIXED"
 
   log "Apply Dash indicator style"
   gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-customize-running-dots true
