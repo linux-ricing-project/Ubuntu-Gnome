@@ -95,65 +95,6 @@ function refresh_gnome(){
 }
 
 # ============================================
-# Função que configura a extensão Dash-to-Dock
-# ============================================
-function configure_dash_to_dock_extensions(){
-  log "Apply Dash color"
-  gsettings set org.gnome.shell.extensions.dash-to-dock custom-background-color true
-  gsettings set org.gnome.shell.extensions.dash-to-dock background-color "#000000"
-  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity "0.9"
-
-  log "Apply Dash indicator style"
-  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-customize-running-dots true
-  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-color "#CE5C00"
-  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-color "#CE5C00"
-  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-running-dots-border-width 0
-  gsettings set org.gnome.shell.extensions.dash-to-dock running-indicator-style "SEGMENTED"
-
-  log "Apply Dash icon size to 20"
-  gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 20
-  log "Apply Dash always visible"
-  gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
-  log "Apply Dash fill all space"
-  gsettings set org.gnome.shell.extensions.dash-to-dock extend-height true
-  gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-shrink true
-
-  log "Apply Dash to bottom"
-  gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-  log "Apply Dash to intelligent hide"
-  gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
-  log "Apply Dash to hide trash icon"
-  gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
-  log "Apply Dash button to the left"
-  gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
-}
-
-# ============================================
-# Função que configura as outras extensões
-# ============================================
-function configure_others_extensions(){
-  log "Config OpenWeather Extension"
-  gsettings set org.gnome.shell.extensions.openweather unit "celsius"
-  gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
-
-  log "Config Apt-Update-Indicator Extension"
-  gsettings set org.gnome.shell.extensions.apt-update-indicator update-cmd-options update-manager
-
-  log "Apply Activities-Configurator icon"
-  cd "$current_folder"
-  local ubuntu_icon="$(pwd)/ubuntu_icon.svg"
-  gsettings set org.gnome.shell.extensions.activities-config activities-config-button-icon-path "$ubuntu_icon"
-  gsettings set org.gnome.shell.extensions.activities-config activities-icon-scale-factor 1.8
-
-  log "Apply Activities-Configurator text"
-  local ubuntu_description=$(grep "DISTRIB_DESCRIPTION" /etc/lsb-release | cut -d "=" -f2 | sed 's/ LTS//g' | sed 's/"//g')
-  gsettings set org.gnome.shell.extensions.activities-config activities-config-button-text "$ubuntu_description"
-
-  log "Apply Activities-Configurator disable hot-corner"
-  gsettings set org.gnome.shell.extensions.activities-config activities-config-hot-corner true
-}
-
-# ============================================
 # Função que instala todas as extensões
 # ============================================
 function install_all_extensions(){
@@ -176,8 +117,6 @@ function install_all_extensions(){
   # linka os schemas
   _move_schema_files
 
-  configure_others_extensions
-  configure_dash_to_dock_extensions
 }
 
 # ============================================
