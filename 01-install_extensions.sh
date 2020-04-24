@@ -100,15 +100,29 @@ function refresh_gnome(){
 # Função que instala todas as extensões
 # ============================================
 function install_all_extensions(){
-  extensions=(
-    ${gnome_site}/extension-data/dash-to-dockmicxgx.gmail.com.v68.shell-extension.zip
-    ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
-    ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
-    ${gnome_site}/extension-data/activities-confignls1729.v84.shell-extension.zip
-    ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
-    ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
-    ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
-  )
+  # The version of Gnome-Shell in Ubuntu 18.04 is equal to 3.28
+  # and Gnome-Shell version in Ubuntu 20.04 is equal to 3.36
+  if [ "$ubuntu_version" == "18.04" ];then
+    extensions=(
+      ${gnome_site}/extension-data/dash-to-dockmicxgx.gmail.com.v65.shell-extension.zip
+      ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
+      ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
+      ${gnome_site}/extension-data/activities-confignls1729.v71.shell-extension.zip
+      ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
+      ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
+      ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v34.shell-extension.zip
+    )
+  elif [ "$ubuntu_version" == "20.04" ];then
+    extensions=(
+      ${gnome_site}/extension-data/dash-to-dockmicxgx.gmail.com.v68.shell-extension.zip
+      ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
+      ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
+      ${gnome_site}/extension-data/activities-confignls1729.v84.shell-extension.zip
+      ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
+      ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
+      ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
+    )
+  fi
 
   #  instala todas as extensões
   log "Install all extensions"
