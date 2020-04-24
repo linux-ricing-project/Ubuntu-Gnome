@@ -89,30 +89,6 @@ function refresh_gnome(){
 }
 
 # ============================================
-# Função que instala todas as extensões
-# ============================================
-function install_all_extensions(){
-  extensions=(
-    ${gnome_site}/extension-data/dash-to-dockmicxgx.gmail.com.v68.shell-extension.zip
-    ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
-    ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
-    ${gnome_site}/extension-data/activities-confignls1729.v84.shell-extension.zip
-    ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
-    ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
-    ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
-  )
-
-  #  instala todas as extensões
-  log "Install all extensions"
-  for extension_url in "${extensions[@]}";do
-    _install_extension "$extension_url"
-  done
-
-  # linka os schemas
-  _move_schema_files
-}
-
-# ============================================
 # Função que configura a extensão Dash-to-Dock
 # ============================================
 function configure_dash_to_dock_extensions(){
@@ -149,7 +125,7 @@ function configure_dash_to_dock_extensions(){
 # ============================================
 # Função que configura as outras extensões
 # ============================================
-function configure_others_extesnions(){
+function configure_others_extensions(){
   log "config OpenWeather Extension"
   gsettings set org.gnome.shell.extensions.openweather unit "celsius"
   gsettings set org.gnome.shell.extensions.openweather wind-speed-unit "kph"
@@ -159,10 +135,35 @@ function configure_others_extesnions(){
 }
 
 # ============================================
+# Função que instala todas as extensões
+# ============================================
+function install_all_extensions(){
+  extensions=(
+    ${gnome_site}/extension-data/dash-to-dockmicxgx.gmail.com.v68.shell-extension.zip
+    ${gnome_site}/extension-data/blyryozoon.dev.gmail.com.v7.shell-extension.zip
+    ${gnome_site}/extension-data/apt-update-indicator%40franglais125.gmail.com.v20.shell-extension.zip
+    ${gnome_site}/extension-data/activities-confignls1729.v84.shell-extension.zip
+    ${gnome_site}/extension-data/glassygnomeemiapwil.v17.shell-extension.zip
+    ${gnome_site}/extension-data/openweather-extension%40jenslody.de.v97.shell-extension.zip
+    ${gnome_site}/extension-data/user-themegnome-shell-extensions.gcampax.github.com.v40.shell-extension.zip
+  )
+
+  #  instala todas as extensões
+  log "Install all extensions"
+  for extension_url in "${extensions[@]}";do
+    _install_extension "$extension_url"
+  done
+
+  # linka os schemas
+  _move_schema_files
+
+  configure_others_extensions
+  configure_dash_to_dock_extensions
+}
+
+# ============================================
 # Main
 # ============================================
 init
 install_all_extensions
-configure_others_extesnions
-configure_dash_to_dock_extensions
 refresh_gnome
